@@ -1,36 +1,30 @@
-from time import sleep
-from selene.support.shared.jquery_style import s, ss
-from Tests.mfc_testing.model import port
+from Tests.mfc_testing.model import mfc
 
 
 def test_mfce2e():
-    port.open()
-    port.search('сироватка')
-    port.open_item_page()
-    sleep(3)
-    port.button_add_to_cart_click()
-    sleep(1)
-    port.cart_click()
-    sleep(1)
-    port.cart_icon_plus()
-    sleep(1)
-    port.cart_icon_minus()
-    sleep(1)
-    port.cart_close_click()
-    port.profile_icon_click()
-    port.login_data_input('olga.mochaieva@gmail.com', 'angedonia91')
-    sleep(3)
-    port.personal_data_click()
-    sleep(2)
-    port.account_name_change('Тетяна')
-    sleep(2)
-    port.account_name_change('Ольга')
-    port.logout()
+    mfc.open()
+    mfc.search('сироватка')
+    mfc.open_item_page()
+    #cart
+    mfc.button_add_to_cart_click()
+    mfc.cart_click()
+    mfc.cart_icon_plus()
+    mfc.cart_icon_minus()
+    mfc.cart_close_click()
+    #authorization
+    mfc.profile_icon_click()
+    mfc.login_data_input('olga.mochaieva@gmail.com', 'olyaolya')
+    #personal data change
+    mfc.personal_data_click()
+    mfc.account_name_change('Тетяна')
+    mfc.account_name_change('Ольга')
+    mfc.logout()
+
     #negative tests
-    port.profile_icon_click()
-    port.login_data_input('olga.mochaieva', 'angedonia91')
-    port.negative_login()
-    port.login_data_input('olga.mochaieva@gmail.com', 'angedonia')
-    port.negative_password()
-    sleep(3)
+    mfc.profile_icon_click()
+    mfc.login_data_input('olga.mochaieva', 'olyaolya')
+    mfc.negative_login()
+    mfc.login_data_input('olga.mochaieva@gmail.com', 'tanya')
+    mfc.negative_password()
+
 

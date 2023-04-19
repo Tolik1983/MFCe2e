@@ -2,6 +2,9 @@ from selene.support.shared import browser
 from selene.support.shared.jquery_style import s, ss
 from selene import have
 from selene.support.conditions import be
+from time import sleep
+
+
 
 
 
@@ -23,27 +26,33 @@ class Mfc:
 
     def open_item_page(self):
         browser.element('[href="/products/serum"]').click()
+        sleep(2)
         return self
+
 
 
     def button_add_to_cart_click(self):
         browser.element('[href="/item?variant_id=225"]').click()
+        sleep(1)
         return self
 
 
     def cart_click(self):
         s('/html/body/div[2]/div[1]/div/div[2]/div/div/div[2]/div[2]/a[1]/span[2]').click()
+        sleep(2)
         return self
 
 
 
     def cart_icon_plus(self):
         s('.icon-plus').click()
+        sleep(3)
         return self
 
 
     def cart_icon_minus(self):
         s('.icon-minus').click().click()
+        sleep(1)
         return self
 
     def cart_close_click(self):
@@ -58,10 +67,12 @@ class Mfc:
         s('#account_email').click().clear().type(login_name)
         s('#account_password').click().clear().type(login_pass)
         s('[type="submit"]').click()
+        sleep(3)
         return self
 
     def personal_data_click(self):
         s('[href="/account/profile"]').click()
+        sleep(2)
         return self
 
 
@@ -69,9 +80,12 @@ class Mfc:
         s('#account_name').click().clear().type(test_name)
         s('.button').click()
         s('#account_name').should(have.value(test_name))
+        sleep(2)
+        return self
 
     def logout(self):
         s('[href="/auth/logout"]').click()
+        sleep(2)
         return self
 
     def negative_login(self):
@@ -80,4 +94,5 @@ class Mfc:
 
     def negative_password(self):
         s('.validation_error').should(be.visible)
+        sleep(3)
         return self
